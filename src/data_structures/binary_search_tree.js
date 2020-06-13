@@ -1,5 +1,5 @@
 class BSTNode {
-  constructor({ key, value, parent, left, right }) {
+  constructor({ key, value, parent, left = null, right = null }) {
     this.key = key;
     this.value = value;
     this.parent = parent;
@@ -15,8 +15,66 @@ class BinarySearchTree {
     this._root = undefined;
   }
 
+    find(key) {
+      let node = this._root;
+
+      while (node) {
+        if (key < node.key) {
+          node = node.left;
+        } else if (key > node.key) {
+          node = node.right;
+        } else if (key === node.key) {
+          return node;
+        } else {
+          return undefined;
+        }
+      }
+    }
+
   insert(key, value = true) {
-    // TODO
+    // New node
+    let node = new this.Node({ key: key, value: value, parent: null});
+
+    if (!this._root) {
+      // Insert root, if no root node.
+      this._count += 1;
+      this._root = node;
+      return;
+
+    } else {
+      this.insertNode(this._root, node);
+    }
+  }
+
+  // Helper Function
+  insertNode(root, node) {
+    if (node.key < root.key) {
+      // If no left child, insert node to the left.
+      if (root.left === null) {
+        root.left = node;
+        this._count += 1;
+      } else {
+        // if not undefined - use recursive function to continue searching left.
+        this.insertNode(root.left, node);
+      }
+
+    } else if (node.key > root.key) {
+      // If no right child, insert node to the right.
+        if (root.right === null) {
+          root.right = node;
+          this._count += 1;
+        // if not undefined - use recursive function to continue searching right.
+      } else {
+        this.insertNode(root.right, node);
+      }
+
+    } else {
+      // key === node.key
+      // return undefined so it doesn't duplicate.
+        node.key === root.key;
+        return root.value = node.value;
+        }
+      return node;
   }
 
   lookup(key) {
