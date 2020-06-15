@@ -15,21 +15,21 @@ class BinarySearchTree {
     this._root = undefined;
   }
 
-    find(key) {
-      let node = this._root;
+  find(key) {
+    let node = this._root;
 
-      while (node) {
-        if (key < node.key) {
-          node = node.left;
-        } else if (key > node.key) {
-          node = node.right;
-        } else if (key === node.key) {
-          return node;
-        } else {
-          return undefined;
-        }
+    while (node) {
+      if (key < node.key) {
+        node = node.left;
+      } else if (key > node.key) {
+        node = node.right;
+      } else if (key === node.key) {
+        return node;
+      } else {
+        return undefined;
       }
     }
+  }
 
   insert(key, value = true) {
     // New node
